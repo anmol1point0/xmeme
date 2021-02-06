@@ -1,13 +1,13 @@
-package com.MyDate;
+package com.Xmeme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MyDateApplication {
+public class MyMemeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MyDateApplication.class, args);
+		SpringApplication.run(MyMemeApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package com.example.MyDate;
+package com.example.Xmeme;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MyDateApplicationTests {
+class XmemeApplicationTests {
 
 	@Test
 	void contextLoads() {
