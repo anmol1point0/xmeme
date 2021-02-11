@@ -41,10 +41,5 @@ public class XmemeController {
     	//userMeme.setImage_url("1234sadfgr");
         return userService.postMemes(userMeme);
     }
-    
-    @PutMapping
-    public ResponseEntity<String> updateMemes(@RequestBody Memes userMeme){
-    	return userService.updateMemes(userMeme);
-    }
-
+   
 }
