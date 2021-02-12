@@ -2,6 +2,7 @@ package com.Xmeme.services;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import com.Xmeme.entities.Memes;
 import com.Xmeme.repositories.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UserServiceImpl {
@@ -37,11 +39,16 @@ public class UserServiceImpl {
     }
     
     public ResponseEntity<Memes> getOneMeme(String id) {
-    	Memes meme = userRepository.findMemeById(id);
-    	if(meme!=null) {
-    		return ResponseEntity.ok().body(meme);
+    	Optional<Memes> meme = Optional.ofNullable(userRepository.findMemeById(id));
+    	
+    	if(meme.isPresent()) {
+    		System.out.println("present "+meme.get().getName());
+    		return ResponseEntity.ok().body(meme.get());
     	}
-    	else
-    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);	
+    	else {
+    		System.out.println("present not");
+    		throw new ResponseStatusException(
+    		          HttpStatus.NOT_FOUND);	
+    	}
     }
 }

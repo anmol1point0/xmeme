@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -46,10 +48,15 @@ public class XmemeController {
     }
     
     @GetMapping("/{Id}")
-    public Memes getOneMeme(@PathVariable("Id") String id) {
+    public Memes getOneMeme(@PathVariable("Id") String id)  {
     	System.out.println("id is"+id);
-        ResponseEntity<Memes> memes = userService.getOneMeme(id);
-        return memes.getBody();
+    	try {
+	        ResponseEntity<Memes> memes = userService.getOneMeme(id);
+	        return memes.getBody();
+    	}catch(Exception e) {
+    		throw new ResponseStatusException(
+    		          HttpStatus.NOT_FOUND);
+    	}
     }
    
 }
