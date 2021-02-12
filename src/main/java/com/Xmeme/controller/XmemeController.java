@@ -1,6 +1,7 @@
 package com.Xmeme.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.Xmeme.entities.Memes;
 import com.Xmeme.services.UserServiceImpl;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,8 +31,9 @@ public class XmemeController {
 
     @GetMapping
     public List<Memes> getMemes() throws JsonMappingException, JsonProcessingException {
-        List<Memes> movies = userService.getMemes();
-        return movies;
+        List<Memes> memes = userService.getMemes();
+        
+        return memes;
     }
 
     @PostMapping
@@ -40,6 +43,13 @@ public class XmemeController {
     	System.out.println("image_url is"+userMeme.getCaption());
     	//userMeme.setImage_url("1234sadfgr");
         return userService.postMemes(userMeme);
+    }
+    
+    @GetMapping("/{Id}")
+    public Memes getOneMeme(@PathVariable("Id") String id) {
+    	System.out.println("id is"+id);
+        ResponseEntity<Memes> memes = userService.getOneMeme(id);
+        return memes.getBody();
     }
    
 }

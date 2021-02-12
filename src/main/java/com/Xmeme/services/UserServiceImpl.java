@@ -7,6 +7,7 @@ import com.Xmeme.entities.Memes;
 import com.Xmeme.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +36,12 @@ public class UserServiceImpl {
         }
     }
     
-    
+    public ResponseEntity<Memes> getOneMeme(String id) {
+    	Memes meme = userRepository.findMemeById(id);
+    	if(meme!=null) {
+    		return ResponseEntity.ok().body(meme);
+    	}
+    	else
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);	
+    }
 }

@@ -11,7 +11,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
 
 @Document(collection = "MYDATE")
 //@CompoundIndex(def = "{'Name':1,'Caption':1, 'Imageaddress':1}", unique = true)
@@ -30,7 +29,17 @@ public class Memes implements Serializable {
     private String id;
     
     
-    private String Name;
+    public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+	private String Name;
 
     private String Caption;
 
