@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "MYDATE")
+@Document(collection = "XMEME")
 //@CompoundIndex(def = "{'Name':1,'Caption':1, 'Imageaddress':1}", unique = true)
 public class Memes implements Serializable {
 
